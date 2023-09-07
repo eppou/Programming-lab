@@ -1,0 +1,28 @@
+<div th:switch="${cardapio}">
+  <h2 th:case="null">Ainda não há itens registrados!</h2>
+  <div th:case="*">
+    <h2>Cardapio do Restaurante</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Por no carrinho</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="itemCardapio : ${cardapio}" >
+        <td th:text="${itemCardapio.nome}"></td>
+        <td th:text="${itemCardapio.descricao}"></td>
+        <td th:text="${itemCardapio.preco}"></td>
+        <td><a th:href="@{/pedir/{id}(id=${itemCardapio.id})}"> Pedir </a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:case="${#lists.isEmpty(cardapio)}">
+    <h2>Ainda não há itens registrados!</h2>
+  </div>
+  <p><a href="/index">Voltar para lista de restaurantes</a></p>
+</div>

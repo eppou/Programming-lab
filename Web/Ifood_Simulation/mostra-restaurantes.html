@@ -1,0 +1,24 @@
+<div th:switch="${listaRestaurantes}">
+    <h2 th:case="null">Ainda não há restaurantes registrados!</h2>
+    <div th:case="*">
+        <h2>Restaurantes disponiveis</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cardapio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="restaurante : ${listaRestaurantes}" >
+                <td th:text="${restaurante.nome}"></td>
+                <td><a th:href="@{/mostrarcardapio/{id}(id=${restaurante.id})}">Cardapio</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:case="${#lists.isEmpty(cardapio)}">
+        <h2>Ainda não há restaurantes registrados!</h2>
+    </div>
+    <p><a href="/index">Voltar para pagina inicial</a></p>
+</div>

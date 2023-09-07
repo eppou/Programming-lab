@@ -1,0 +1,26 @@
+<h2>Carrinho</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Restaurante</th>
+        <th>Item</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+        <th>Diminui</th>
+        <th>Aumenta</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="carrinho : ${sessionCarrinho}">
+        <td th:text="${carrinho.itemCardapio.restaurante.nome}"></td>
+        <td th:text="${carrinho.itemCardapio.nome}"></td>
+        <td th:text="${carrinho.quantia}"></td>
+        <td th:text="${carrinho.itemCardapio.preco}"></td>
+        <td><a th:href="@{/pedido/diminuir/{id}(id=${carrinho.itemCardapio.id})}"> - </a></td>
+        <td><a th:href="@{/pedido/aumentar/{id}(id=${carrinho.itemCardapio.id})}"> + </a></td>
+
+    </tr>
+    </tbody>
+</table>
+<p><a th:text="'total da compra = ' +${total}"></a></p>
+<p><a href="/index">Voltar para lista de produtos</a></p>
